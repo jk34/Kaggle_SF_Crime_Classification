@@ -10,4 +10,6 @@ I tried to get a better log-loss, so I got 6 samples that contained each outcome
 
 So the log-loss for LDA was better than any of the log-loss values computed from Random Forest
 
+I then used k-fold cross validation on LDA before creating a submission file containing the predicted probabilities on the test data provided by Kaggle. With 10 folds, the average log-loss was 2.668. 
+
 In the future, I plan to modify this by using k-fold cross-validation and trying to further tune the parameters for the Random Forest to get the best possible log-loss
