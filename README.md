@@ -4,20 +4,22 @@
 
 I obtained data from the San Francisco Crime Classification competition on Kaggle: https://www.kaggle.com/c/sf-crime, and used R programming to utilize machine learning algorithms to generate predictions for the classification of crimes
 
-I first converted the Dates variable in DayOfWeek, Month, Year, Hour, Minute, and Second. I also used the Hour variable to create a Night variable, and used the Address variable to create an Intersection variable, as explained here: https://brittlab.uwaterloo.ca/2015/11/01/KaggleSFcrime/
-
-The features I used were PdDistrict, DayOfWeek, Intersection, X, Y, and Night. PdDistrict is the name of the district in San Francisco that a crime occurred in, Intersection specified whether the crime occurred at an intersection or not, X and Y were the x,y coordinates that a crime occurred in, and Night specified whether the crime occurred after 10pm or before 6am.
-
 I used random forest, linear discriminant analysis, and gradient boosting on the training set to generate predictions. For gradient boosting, I had to convert the matrix containing the data into a sparse matrix, according to this: https://brittlab.uwaterloo.ca/2015/11/01/KaggleSFcrime
 
 
 ## Background
 
-The goal was to use the features to predict the probabilities of each category the crime was likely to be. The crime labels were: "ARSON", "ASSAULT", "BAD CHECKS","BRIBERY","BURGLARY","DISORDERLY CONDUCT", "DRIVING UNDER THE INFLUENCE", "DRUG/NARCOTIC", "DRUNKENNESS","EMBEZZLEMENT","EXTORTION", "FAMILY OFFENSES","FORGERY/COUNTERFEITING","FRAUD","GAMBLING","KIDNAPPING","LARCENY/THEFT","LIQUOR LAWS","LOITERING","MISSING PERSON","NON-CRIMINAL","OTHER OFFENSES","PORNOGRAPHY/OBSCENE MAT","PROSTITUTION","RECOVERED VEHICLE","ROBBERY","RUNAWAY","SECONDARY CODES","SEX OFFENSES FORCIBLE","SEX OFFENSES NON FORCIBLE","STOLEN PROPERTY","SUICIDE","SUSPICIOUS OCC","TREA","TRESPASS","VANDALISM","VEHICLE THEFT", "WARRANTS","WEAPON LAWS"
+The goal was to use the features to predict the probabilities of each category the crime was likely to be. The crimes could be categorized as "Argon", "Assault", "Theft", etc. 
 
 ## Data Exploration
 
+The CSV files provided by Kaggle are assumed to be already cleaned. I could perform further data exploration, but due to time constraints, I chose not to. I could have generated histograms and boxplots to look for noticeable typos and outliers
+
 ## Rest of Code
+
+I first converted the Dates variable in DayOfWeek, Month, Year, Hour, Minute, and Second. I also used the Hour variable to create a Night variable, and used the Address variable to create an Intersection variable, as explained here: https://brittlab.uwaterloo.ca/2015/11/01/KaggleSFcrime/
+
+The features I used were PdDistrict, DayOfWeek, Intersection, X, Y, and Night. PdDistrict is the name of the district in San Francisco that a crime occurred in, Intersection specified whether the crime occurred at an intersection or not, X and Y were the x,y coordinates that a crime occurred in, and Night specified whether the crime occurred after 10pm or before 6am.
 
 ## Results
 
@@ -29,7 +31,10 @@ So the log-loss for LDA was better than any of the log-loss values computed from
 
 I then used k-fold cross validation on LDA before creating a submission file containing the predicted probabilities on the test data provided by Kaggle. With 10 folds, the average log-loss was 2.668. 
 
+I then used gradient boosting, which gave a better log-loss score than LDA or random forest. I submitted my predictions from gradient boosting to Kaggle
 
 ## Conclusion
 
-In the future, I plan to modify this by using k-fold cross-validation and trying to further tune the parameters for the Random Forest to get the best possible log-loss
+These predictions could be improved as I didn't spend much time with feature engineering due to time constraints. 
+
+
